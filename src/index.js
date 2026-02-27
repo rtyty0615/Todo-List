@@ -1,7 +1,17 @@
 import "./styles.css";
-import { greeting } from "./project.js";
+import { } from "./project.js";
 import * as Icons from './icons.js';
 
-const HeaderIcon = Icons.BigIcon;
 
-console.log(greeting);
+function header(){
+    const header = document.querySelector("header");
+    const headerDiv = document.createElement("div");
+    const bigIconSvg = Icons.bigIcon;
+    const bigIcon = Icons.getIconElement(bigIconSvg, "big-icon");
+    headerDiv.appendChild(bigIcon);
+    const headerTitle = document.createElement("h1");
+    headerTitle.textContent = "Todo List";
+    headerDiv.appendChild(headerTitle);
+    header.appendChild(headerDiv);
+}
+header()
