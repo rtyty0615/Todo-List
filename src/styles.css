@@ -38,7 +38,7 @@ main div{
     gap: 20px;
 }
 
-button {
+button{
     appearance: none;
     background: none;
     border: none;
@@ -55,12 +55,17 @@ h2 {
     font-size: 40px;
 }
 
-button svg {
+button svg, div svg {
     width: 40px;
     height: 40px;
 }
 
 #submit-btn-div{
+    display: flex;
+    flex-direction: row;
+}
+
+#project-container div{
     display: flex;
     flex-direction: row;
 }

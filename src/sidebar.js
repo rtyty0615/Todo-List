@@ -37,12 +37,16 @@ export function sidebar() {
     sidebar.appendChild(btnList);
 
     const projectText = document.createElement("h2");
-    projectText.textContent = "Project"
+    projectText.textContent = "Project";
     sidebar.appendChild(projectText);
 
-    const container = document.createElement("div");
-    container.id = "add-project";
-    sidebar.appendChild(container);
+    const projectContainer = document.createElement("div");
+    projectContainer.id = "project-container";
+    sidebar.appendChild(projectContainer);
+
+    const addProjectButton = document.createElement("div");
+    addProjectButton.id = "add-project";
+    sidebar.appendChild(addProjectButton);
 
     main.appendChild(sidebar);
 }

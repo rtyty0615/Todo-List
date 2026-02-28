@@ -1,4 +1,5 @@
 import { addProjectButton } from "./sidebar.js";
+import * as Icons from './icon.js';
 
 export default function setupProjectInteractions() {
     const projectContainer = document.querySelector("#add-project");
@@ -16,6 +17,8 @@ export default function setupProjectInteractions() {
             const input = document.querySelector("#user-input");
             if (input.value.trim() !== "") {
                 console.log("Adding:", input.value);
+                const projectName = input.value;
+                renderInputProject(projectName);
                 addProjectButton();
             } else {
                 alert("Please enter a project name!");
@@ -26,8 +29,8 @@ export default function setupProjectInteractions() {
 }
 
 function renderInputForm() {
-    const projectContainer = document.querySelector("#add-project");
-    projectContainer.innerHTML = "";
+    const projectAdd = document.querySelector("#add-project");
+    projectAdd.innerHTML = "";
 
     const input = document.createElement("input");
     input.type = "text";
@@ -46,5 +49,17 @@ function renderInputForm() {
     cancelBtn.textContent = "Cancel";
 
     submitBtnDiv.append(submitBtn, cancelBtn);
-    projectContainer.append(input, submitBtnDiv);
+    projectAdd.append(input, submitBtnDiv);
+}
+
+function renderInputProject(projectName) {
+    const projectContainer = document.querySelector("#project-container");
+    const projectDiv = document.createElement("div");
+    const projectSvg = Icons.projectIcon;
+    const projectIcon = Icons.getIconElement(projectSvg, "project-icon");
+    projectDiv.appendChild(projectIcon);
+    const projectTitle = document.createElement("div");
+    projectTitle.textContent = projectName;
+    projectDiv.appendChild(projectTitle);
+    projectContainer.appendChild(projectDiv);
 }
