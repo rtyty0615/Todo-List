@@ -1,7 +1,7 @@
 import "./styles.css";
 import * as Icons from './icon.js';
 
-export default function sidebar() {
+export function sidebar() {
     const main = document.querySelector("main");
     const sidebar = document.createElement("div");
     sidebar.id = "sidebar";
@@ -40,14 +40,23 @@ export default function sidebar() {
     projectText.textContent = "Project"
     sidebar.appendChild(projectText);
 
+    const container = document.createElement("div");
+    container.id = "add-project";
+    sidebar.appendChild(container);
+
+    main.appendChild(sidebar);
+}
+
+export function addProjectButton() {
+    const containerAdd = document.querySelector("#add-project");
+    containerAdd.innerHTML = "";
     const addBtn = document.createElement("button");
+    addBtn.id = "add-project-btn";
     const addSvg = Icons.addIcon;
-    const addIcon = Icons.getIconElement(addSvg, "today-icon");
+    const addIcon = Icons.getIconElement(addSvg, "add-icon");
     addBtn.appendChild(addIcon);
     const addText = document.createElement("div");
     addText.textContent = "Add Project";
     addBtn.appendChild(addText);
-    sidebar.appendChild(addBtn);
-
-    main.appendChild(sidebar);
+    containerAdd.appendChild(addBtn);
 }

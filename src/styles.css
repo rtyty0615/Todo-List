@@ -60,3 +60,7 @@ button svg {
     height: 40px;
 }
 
+#submit-btn-div{
+    display: flex;
+    flex-direction: row;
+}
