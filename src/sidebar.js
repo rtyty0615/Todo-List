@@ -1,0 +1,53 @@
+import "./styles.css";
+import * as Icons from './icon.js';
+
+export default function sidebar() {
+    const main = document.querySelector("main");
+    const sidebar = document.createElement("div");
+    sidebar.id = "sidebar";
+
+    const btnList = document.createElement("div");
+
+    const inboxBtn = document.createElement("button");
+    const inboxSvg = Icons.inboxIcon;
+    const inboxIcon = Icons.getIconElement(inboxSvg, "inbox-icon");
+    inboxBtn.appendChild(inboxIcon);
+    const inboxText = document.createElement("div");
+    inboxText.textContent = "Inbox";
+    inboxBtn.appendChild(inboxText);
+    btnList.appendChild(inboxBtn);
+
+    const todayBtn = document.createElement("button");
+    const todaySvg = Icons.todayIcon;
+    const todayIcon = Icons.getIconElement(todaySvg, "today-icon");
+    todayBtn.appendChild(todayIcon);
+    const todayText = document.createElement("div");
+    todayText.textContent = "Today";
+    todayBtn.appendChild(todayText);
+    btnList.appendChild(todayBtn);
+
+    const weekBtn = document.createElement("button");
+    const weekSvg = Icons.weekIcon;
+    const weekIcon = Icons.getIconElement(weekSvg, "week-icon");
+    weekBtn.appendChild(weekIcon);
+    const weekText = document.createElement("div");
+    weekText.textContent = "This week";
+    weekBtn.appendChild(weekText);
+    btnList.appendChild(weekBtn);
+    sidebar.appendChild(btnList);
+
+    const projectText = document.createElement("h2");
+    projectText.textContent = "Project"
+    sidebar.appendChild(projectText);
+
+    const addBtn = document.createElement("button");
+    const addSvg = Icons.addIcon;
+    const addIcon = Icons.getIconElement(addSvg, "today-icon");
+    addBtn.appendChild(addIcon);
+    const addText = document.createElement("div");
+    addText.textContent = "Add Project";
+    addBtn.appendChild(addText);
+    sidebar.appendChild(addBtn);
+
+    main.appendChild(sidebar);
+}
