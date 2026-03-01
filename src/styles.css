@@ -71,12 +71,13 @@ button svg, div svg {
     height: 40px;
 }
 
-#submit-btn-div{
+#submit-btn-div, #project-container div, #submit-btn-container{
     display: flex;
     flex-direction: row;
 }
 
-#project-container div{
+.task{
     display: flex;
     flex-direction: row;
+    gap: 20px;
 }

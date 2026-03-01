@@ -9,7 +9,9 @@ export function preview() {
     previewTitle.id = "preview-title";
     const previewContent = document.createElement("div");
     previewContent.id = "preview-content";
-    previewContainer.append(previewTitle, previewContent);
+    const previewAdd = document.createElement("div");
+    previewAdd.id = "preview-add";
+    previewContainer.append(previewTitle, previewContent, previewAdd);
     main.append(previewContainer);
 }
 
@@ -32,13 +34,15 @@ export function previewInteraction() {
 function renderPreview(buttonText){
     const renderPreview = document.querySelector("#preview-title");
     renderPreview.innerHTML = "";
+    const renderPreviewContent = document.querySelector("#preview-content");
+    renderPreviewContent.innerHTML = "";
     const previewTitle = document.createElement("h2");
     previewTitle.textContent = buttonText;
     renderPreview.append(previewTitle);
 }
 
-function addTaskButton() {
-    const addTask = document.querySelector("#preview-content");
+export function addTaskButton() {
+    const addTask = document.querySelector("#preview-add");
     addTask.innerHTML = "";
     const addBtn = document.createElement("button");
     addBtn.id = "add-task-btn";
@@ -50,3 +54,4 @@ function addTaskButton() {
     addBtn.appendChild(addText);
     addTask.appendChild(addBtn);
 }
+
