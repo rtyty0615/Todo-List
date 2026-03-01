@@ -58,7 +58,7 @@ function renderInputForm() {
 function renderInputProject(projectName) {
     const projectContainer = document.querySelector("#project-container");
     const projectBtn = document.createElement("button");
-    projectBtn.classList.add("preview-btn");
+    projectBtn.classList.add("preview-btn","project-item");
     const projectSvg = Icons.projectIcon;
     const projectIcon = Icons.getIconElement(projectSvg, "project-icon");
     projectBtn.appendChild(projectIcon);
