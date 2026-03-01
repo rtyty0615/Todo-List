@@ -21,7 +21,6 @@ export default function setupProjectInteractions() {
             } else if (input.value.trim() !== "") {
                 const projectName = input.value;
                 projectList.push(input.value);
-                console.log(projectList);
                 renderInputProject(projectName);
                 addProjectButton();
             } else {
@@ -59,7 +58,7 @@ function renderInputForm() {
 function renderInputProject(projectName) {
     const projectContainer = document.querySelector("#project-container");
     const projectBtn = document.createElement("button");
-    projectBtn.classList.add("preview-button");
+    projectBtn.classList.add("preview-btn");
     const projectSvg = Icons.projectIcon;
     const projectIcon = Icons.getIconElement(projectSvg, "project-icon");
     projectBtn.appendChild(projectIcon);

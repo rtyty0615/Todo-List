@@ -10,6 +10,22 @@ export function preview() {
 }
 
 export function previewInteraction() {
-    
+    const sidebarContainer = document.querySelector("#sidebar");
+    sidebarContainer.addEventListener("click", (event) => {
+        const clickedPreviewBtn = event.target.closest(".preview-btn");
+        
+        if (clickedPreviewBtn) {
+            const buttonText = clickedPreviewBtn.querySelector("div");
+            renderPreview(buttonText.textContent.trim());
+            return;
+        }
+    })
+}
 
+function renderPreview(buttonText){
+    const renderPreview = document.querySelector("#preview");
+    renderPreview.innerHTML = "";
+    const previewTitle = document.createElement("h2");
+    previewTitle.textContent = buttonText;
+    renderPreview.append(previewTitle);
 }
