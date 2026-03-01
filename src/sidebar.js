@@ -9,6 +9,8 @@ export function sidebar() {
     const btnList = document.createElement("div");
 
     const inboxBtn = document.createElement("button");
+    inboxBtn.classList.add("preview-btn");
+    inboxBtn.id = "inbox";
     const inboxSvg = Icons.inboxIcon;
     const inboxIcon = Icons.getIconElement(inboxSvg, "inbox-icon");
     inboxBtn.appendChild(inboxIcon);
@@ -18,6 +20,8 @@ export function sidebar() {
     btnList.appendChild(inboxBtn);
 
     const todayBtn = document.createElement("button");
+    todayBtn.classList.add("preview-btn");
+    todayBtn.id = "today";
     const todaySvg = Icons.todayIcon;
     const todayIcon = Icons.getIconElement(todaySvg, "today-icon");
     todayBtn.appendChild(todayIcon);
@@ -27,6 +31,8 @@ export function sidebar() {
     btnList.appendChild(todayBtn);
 
     const weekBtn = document.createElement("button");
+    weekBtn.classList.add("preview-btn");
+    weekBtn.id = "week";
     const weekSvg = Icons.weekIcon;
     const weekIcon = Icons.getIconElement(weekSvg, "week-icon");
     weekBtn.appendChild(weekIcon);
