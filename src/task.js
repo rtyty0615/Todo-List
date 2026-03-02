@@ -16,13 +16,21 @@ export default function setupTaskInteractions() {
         }
         if (event.target.id === "submit-btn-task") {
             const input = document.querySelector("#task-input");
-            if (taskList.includes(input.value)) {
-                alert("Please enter a different task name!");
-            } else if (input.value.trim() !== "") {
-                const taskName = input.value;
-                taskList.push(input.value);
+            const previewProject = document.querySelector("#preview-title").textContent;
+            console.log(previewProject);
+            const newTask = { name: input.value };
+            newTask["id"]= previewProject;
+            for (const task of taskList) {
+                if (newTask.name === task.name && newTask.id === task.id){
+                    alert("Please enter a different task name!");
+                    return
+                }
+            }
+            if (input.value.trim() !== "") {
+                taskList.push(newTask);
+                console.log(newTask);
                 console.log(taskList);
-                renderInputTask(taskName);
+                renderInputTask(newTask.name);
                 addTaskButton();
             } else {
                 alert("Please enter a task name!");

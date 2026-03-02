@@ -21,6 +21,7 @@ export default function setupProjectInteractions() {
             } else if (input.value.trim() !== "") {
                 const projectName = input.value;
                 projectList.push(input.value);
+                console.log(projectList);
                 renderInputProject(projectName);
                 addProjectButton();
             } else {
