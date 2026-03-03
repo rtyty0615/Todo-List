@@ -7,7 +7,7 @@ export function sidebar() {
     sidebar.id = "sidebar";
 
     const btnList = document.createElement("div");
-
+    btnList.id = "btn-list";
     const inboxBtn = document.createElement("button");
     inboxBtn.classList.add("preview-btn");
     inboxBtn.id = "inbox";
@@ -42,17 +42,22 @@ export function sidebar() {
     btnList.appendChild(weekBtn);
     sidebar.appendChild(btnList);
 
+    const project = document.createElement("div");
+    project.id = "project";
+
     const projectText = document.createElement("h2");
     projectText.textContent = "Project";
-    sidebar.appendChild(projectText);
+    project.appendChild(projectText);
 
     const projectContainer = document.createElement("div");
     projectContainer.id = "project-container";
-    sidebar.appendChild(projectContainer);
+    project.appendChild(projectContainer);
 
     const addProjectButton = document.createElement("div");
     addProjectButton.id = "add-project";
-    sidebar.appendChild(addProjectButton);
+    project.appendChild(addProjectButton);
+
+    sidebar.append(project);
 
     main.appendChild(sidebar);
 }

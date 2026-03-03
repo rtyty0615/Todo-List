@@ -2,7 +2,7 @@ import { addProjectButton } from "./sidebar.js";
 import * as Icons from './icon.js';
 
 export default function setupProjectInteractions() {
-    const projectContainer = document.querySelector("#add-project");
+    const projectContainer = document.querySelector("#project");
     const projectList = [];
     projectContainer.addEventListener("click", (event) => {
         const clickedAddProjectBtn = event.target.closest("#add-project-btn");
@@ -16,11 +16,11 @@ export default function setupProjectInteractions() {
         }
         if (event.target.id === "submit-btn") {
             const input = document.querySelector("#user-input");
-            if (projectList.includes(input.value)) {
+            const projectName = input.value.trim();
+            if (projectList.includes(projectName)) {
                 alert("Please enter a different project name!");
-            } else if (input.value.trim() !== "") {
-                const projectName = input.value;
-                projectList.push(input.value);
+            } else if (projectName !== "") {
+                projectList.push(projectName);
                 console.log(projectList);
                 renderInputProject(projectName);
                 addProjectButton();
@@ -29,6 +29,18 @@ export default function setupProjectInteractions() {
             };
             return;
         }
+        const clickedDeleteProjectBtn = event.target.closest(".project-d-btn");
+        if (clickedDeleteProjectBtn) {
+            const projectDeleted = clickedDeleteProjectBtn.closest('.project-div');
+            const projectDeletedTitle = projectDeleted.querySelector('div').textContent;
+            const index = projectList.indexOf(projectDeletedTitle);
+            if (index > -1) {
+                projectList.splice(index, 1);
+            }
+            projectDeleted.remove();
+            console.log(projectList);
+            return;
+        };
     });
 }
 
@@ -67,6 +79,7 @@ function renderInputProject(projectName) {
     const projectIcon = Icons.getIconElement(projectSvg, "project-icon");
     projectBtn.appendChild(projectIcon);
     const projectTitle = document.createElement("div");
+    projectTitle.classList.add("project-title");
     projectTitle.textContent = projectName;
     projectBtn.appendChild(projectTitle);
 
