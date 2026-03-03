@@ -1,7 +1,7 @@
 import * as Icons from './icon.js';
 import { addTaskButton } from "./preview.js";
 
-export default function setupTaskInteractions() {
+export function setupTaskInteractions() {
     const previewContent = document.querySelector("#preview-container");
     const taskList = [];
     previewContent.addEventListener("click", (event) => {
@@ -16,6 +16,7 @@ export default function setupTaskInteractions() {
         }
         if (event.target.id === "submit-btn-task") {
             const input = document.querySelector("#task-input");
+            if (!input) return;
             const previewProject = document.querySelector("#preview-title").textContent;
             console.log(previewProject);
             const newTask = { name: input.value };
@@ -38,6 +39,10 @@ export default function setupTaskInteractions() {
             return;
         }
     });
+
+    return {
+        getTasks: () => taskList
+    };
 }
 
 
@@ -64,7 +69,7 @@ function renderTaskForm() {
     taskAdd.append(input, submitBtnDiv);
 }
 
-function renderInputTask(taskName) {
+export function renderInputTask(taskName) {
     const previewContent = document.querySelector("#preview-content");
     const taskDiv = document.createElement("div");
     taskDiv.classList.add("task");
