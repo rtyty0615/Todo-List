@@ -78,6 +78,13 @@ export function renderInputTask(taskName) {
     taskDiv.appendChild(taskIcon);
     const taskTitle = document.createElement("div");
     taskTitle.textContent = taskName;
-    taskDiv.appendChild(taskTitle);
+
+    const taskDeleteBtn = document.createElement("button");
+    taskDeleteBtn.classList.add("task-d-btn");
+    const taskDeleteSvg = Icons.deleteIcon;
+    const taskDeleteIcon = Icons.getIconElement(taskDeleteSvg, "task-d-icon");
+    taskDeleteBtn.append(taskDeleteIcon);
+
+    taskDiv.append(taskTitle, taskDeleteBtn);
     previewContent.appendChild(taskDiv);
 }

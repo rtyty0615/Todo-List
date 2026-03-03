@@ -90,13 +90,15 @@ button svg, div svg {
     height: 40px;
 }
 
-.project-d-btn{
+.project-d-btn, .task-d-btn{
     margin-left: auto;
     display: flex;
     align-items: center;
+    justify-content: center
+
 }
 
-.project-d-icon svg {
+.project-d-icon svg, .task-d-icon svg{
     width: 30px;
     height: 30px;
 }
