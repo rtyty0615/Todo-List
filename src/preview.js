@@ -54,8 +54,6 @@ function renderPreviewContent(buttonText, taskManager) {
     });
 }
 
-
-
 export function addTaskButton() {
     const addTask = document.querySelector("#preview-add");
     addTask.innerHTML = "";

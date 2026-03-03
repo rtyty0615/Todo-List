@@ -39,7 +39,7 @@ main div{
 }
 
 #sidebar{
-    background-color: rgb(231, 231, 231);
+    background-color: rgb(244, 244, 244);
     min-height: 100vh;
     padding: 20px;
 
@@ -53,13 +53,32 @@ button{
     appearance: none;
     background: none;
     border: none;
-    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+
     font: inherit;
     cursor: pointer;
     outline: inherit;
-    display: flex;
     gap: 20px;
+
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
     
+    padding: 10px 15px;
+}
+
+button:hover {
+    background-color: #e5e5e5;
+    border-color: #ccc;
+}
+
+button:active {
+    background-color: #e0e0e0;
+}
+
+.project-item{
+    min-width: 200px;
 }
 
 h2 {
@@ -69,6 +88,17 @@ h2 {
 button svg, div svg {
     width: 40px;
     height: 40px;
+}
+
+.project-d-btn{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.project-d-icon svg {
+    width: 30px;
+    height: 30px;
 }
 
 #submit-btn-div, #project-container div, #submit-btn-container{

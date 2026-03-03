@@ -58,6 +58,9 @@ function renderInputForm() {
 
 function renderInputProject(projectName) {
     const projectContainer = document.querySelector("#project-container");
+    const projectDiv = document.createElement("div");
+    projectDiv.classList.add("project-div");
+
     const projectBtn = document.createElement("button");
     projectBtn.classList.add("preview-btn","project-item");
     const projectSvg = Icons.projectIcon;
@@ -66,5 +69,12 @@ function renderInputProject(projectName) {
     const projectTitle = document.createElement("div");
     projectTitle.textContent = projectName;
     projectBtn.appendChild(projectTitle);
-    projectContainer.appendChild(projectBtn);
+
+    const projectDeleteBtn = document.createElement("button");
+    projectDeleteBtn.classList.add("project-d-btn");
+    const projectDeleteSvg = Icons.deleteIcon;
+    const projectDeleteIcon = Icons.getIconElement(projectDeleteSvg, "project-d-icon");
+    projectDeleteBtn.append(projectDeleteIcon);
+    projectDiv.append(projectBtn, projectDeleteBtn);
+    projectContainer.appendChild(projectDiv);
 }
