@@ -1,5 +1,7 @@
 import "./styles.css";
 import * as Icons from './icon.js';
+import {renderInputTask} from "./task.js";
+import { taskManager } from "./taskManager.js";
 
 export function preview() {
     const main = document.querySelector("main");
@@ -21,9 +23,11 @@ export function previewInteraction() {
         const clickedPreviewBtn = event.target.closest(".preview-btn");
         
         if (clickedPreviewBtn) {
-            const buttonText = clickedPreviewBtn.querySelector("div");
-            renderPreview(buttonText.textContent.trim());
+            const buttonText = clickedPreviewBtn.querySelector("div").textContent.trim();
+            renderPreviewTitle(buttonText);
+
             if (clickedPreviewBtn.classList.contains('project-item')){
+                renderPreviewContent(buttonText);
                 addTaskButton()
             }
         }
@@ -31,14 +35,24 @@ export function previewInteraction() {
     })
 }
 
-function renderPreview(buttonText){
-    const renderPreview = document.querySelector("#preview-title");
-    renderPreview.innerHTML = "";
+function renderPreviewTitle(buttonText) {
+    const renderPreviewTitle = document.querySelector("#preview-title");
+    renderPreviewTitle.innerHTML = "";
     const renderPreviewContent = document.querySelector("#preview-content");
     renderPreviewContent.innerHTML = "";
     const previewTitle = document.createElement("h2");
     previewTitle.textContent = buttonText;
-    renderPreview.append(previewTitle);
+    renderPreviewTitle.append(previewTitle);
+}
+
+function renderPreviewContent(buttonText) {
+    // Fetch directly from the single source of truth
+    const currentTasks = taskManager.getTasks();
+    currentTasks.forEach(task => {
+        if (buttonText === task.id) {
+            renderInputTask(task.name);
+        }
+    });
 }
 
 export function addTaskButton() {
