@@ -28,16 +28,13 @@ export function setupTaskInteractions() {
             const previewProject = document.querySelector("#preview-title").textContent;
             const newTask = { name: taskName, id: previewProject };
 
-            // Ask the manager to add the task. It returns true or false.
             const success = taskManager.addTask(newTask);
 
             if (success) {
-                // It worked! Render it.
                 console.log("Current List:", taskManager.getTasks());
                 renderInputTask(newTask.name);
                 addTaskButton();
             } else {
-                // It failed (duplicate found)
                 alert("Please enter a different task name!");
             }
             return;

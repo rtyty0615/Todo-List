@@ -4,12 +4,18 @@ export const projectManager = {
     getProjects: () => projectList,
 
     addProject: (newProject) => {
-        // Check for duplicates
         const isDuplicate = projectList.includes(newProject);
         if (isDuplicate) {
-            return false; // Tells the UI the addition failed
+            return false; 
         }
         projectList.push(newProject);
-        return true; // Tells the UI the addition succeeded
-    }
+        return true; 
+    },
+    deleteProject: (deleteProject) => {
+        const index = projectList.indexOf(deleteProject);
+        if (index > -1) {
+            projectList.splice(index, 1);
+        }
+    },
+
 };

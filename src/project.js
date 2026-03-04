@@ -36,12 +36,9 @@ export default function setupProjectInteractions() {
         if (clickedDeleteProjectBtn) {
             const projectDeleted = clickedDeleteProjectBtn.closest('.project-div');
             const projectDeletedTitle = projectDeleted.querySelector('div').textContent;
-            const index = projectList.indexOf(projectDeletedTitle);
-            if (index > -1) {
-                projectList.splice(index, 1);
-            }
+            projectManager.deleteProject(projectDeletedTitle);
             projectDeleted.remove();
-            console.log(projectList);
+            console.log(projectManager.getProjects());
             return;
         };
     });
