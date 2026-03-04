@@ -56,11 +56,28 @@ export function setupTaskInteractions() {
         if (dateBtn) {
             const taskItem = dateBtn.closest(".task");
             const dateDiv = taskItem.querySelector('.task-date');
-            renderInputDate(dateDiv);
+            renderDateForm(dateDiv);
             return;
         };
-
     });
+
+    previewContent.addEventListener("change", (event) => {
+        const clickedDateBtn = event.target.closest(".task-date-input");
+        if (clickedDateBtn) {
+            const selectedDate = event.target.value;
+            console.log("Date saved automatically:", selectedDate);
+
+            const taskItem = clickedDateBtn.closest(".task");
+            const dateDiv = taskItem.querySelector('.task-date');
+            dateDiv.innerHTML = "";
+            const taskDate = renderInputDate(selectedDate);
+            dateDiv.append(taskDate);
+            return;
+        };
+    });
+    
+
+
 }
 
 function renderTaskForm() {
@@ -102,18 +119,13 @@ export function renderInputTask(taskName) {
     const taskDeleteIcon = Icons.getIconElement(taskDeleteSvg, "task-d-icon");
     taskDeleteBtn.append(taskDeleteIcon);
 
-    const taskDate = document.createElement("div");
-    const taskDateBtn = document.createElement("button");
-    taskDateBtn.classList.add("task-date-btn");
-    taskDate.classList.add("task-date");
-    taskDateBtn.textContent = "No Date";
-    taskDate.append(taskDateBtn);
+    const taskDate = renderInputDate("No date");
 
     taskDiv.append(taskTitle, taskDate, taskDeleteBtn);
     previewContent.appendChild(taskDiv);
 }
 
-function renderInputDate(dateInput){
+function renderDateForm(dateInput){
     dateInput.innerHTML = "";
     const input = document.createElement("input");
     input.type = "date";
@@ -121,4 +133,14 @@ function renderInputDate(dateInput){
     input.name = "task-date";
     dateInput.append(input);
     input.focus();
+}
+
+function renderInputDate(date){
+    const taskDate = document.createElement("div");
+    const taskDateBtn = document.createElement("button");
+    taskDateBtn.classList.add("task-date-btn");
+    taskDate.classList.add("task-date");
+    taskDateBtn.textContent = date;
+    taskDate.append(taskDateBtn);
+    return taskDate;
 }
