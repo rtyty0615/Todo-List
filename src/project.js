@@ -1,9 +1,9 @@
 import { addProjectButton } from "./sidebar.js";
 import * as Icons from './icon.js';
+import { projectManager } from "./projectManager.js";
 
 export default function setupProjectInteractions() {
     const projectContainer = document.querySelector("#project");
-    const projectList = [];
     projectContainer.addEventListener("click", (event) => {
         const clickedAddProjectBtn = event.target.closest("#add-project-btn");
         if (clickedAddProjectBtn) {
@@ -17,18 +17,21 @@ export default function setupProjectInteractions() {
         if (event.target.id === "submit-btn") {
             const input = document.querySelector("#user-input");
             const projectName = input.value.trim();
-            if (projectList.includes(projectName)) {
-                alert("Please enter a different project name!");
-            } else if (projectName !== "") {
-                projectList.push(projectName);
-                console.log(projectList);
-                renderInputProject(projectName);
-                addProjectButton();
-            } else {
+            if (projectName === "") {
                 alert("Please enter a project name!");
-            };
+                return;
+            }
+            const success = projectManager.addProject(projectName);
+            if (success) {
+                    console.log("Current Project:", projectManager.getProjects());
+                    renderInputProject(projectName);
+                    addProjectButton();
+                } else {
+                    alert("Please enter a different task name!");
+                }
             return;
         }
+
         const clickedDeleteProjectBtn = event.target.closest(".project-d-btn");
         if (clickedDeleteProjectBtn) {
             const projectDeleted = clickedDeleteProjectBtn.closest('.project-div');

@@ -44,10 +44,6 @@ export function setupTaskInteractions() {
 
         }
     });
-
-    return {
-        getTasks: () => taskList
-    };
 }
 
 
