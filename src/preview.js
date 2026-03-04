@@ -1,7 +1,7 @@
 import "./styles.css";
 import * as Icons from './icon.js';
-import { setupTaskInteractions, renderInputTask } from "./task.js";
-
+import {renderInputTask, } from "./task.js";
+import { taskManager } from "./taskManager.js";
 
 export function preview() {
     const main = document.querySelector("main");
@@ -18,7 +18,7 @@ export function preview() {
 }
 
 export function previewInteraction() {
-    const taskManager = setupTaskInteractions();
+    
     const sidebarContainer = document.querySelector("#sidebar");
     sidebarContainer.addEventListener("click", (event) => {
         const clickedPreviewBtn = event.target.closest(".preview-btn");
@@ -26,8 +26,9 @@ export function previewInteraction() {
         if (clickedPreviewBtn) {
             const buttonText = clickedPreviewBtn.querySelector("div").textContent.trim();
             renderPreviewTitle(buttonText);
+
             if (clickedPreviewBtn.classList.contains('project-item')){
-                renderPreviewContent(buttonText, taskManager);
+                renderPreviewContent(buttonText);
                 addTaskButton()
             }
         }
@@ -35,7 +36,7 @@ export function previewInteraction() {
     })
 }
 
-function renderPreviewTitle(buttonText){
+function renderPreviewTitle(buttonText) {
     const renderPreviewTitle = document.querySelector("#preview-title");
     renderPreviewTitle.innerHTML = "";
     const renderPreviewContent = document.querySelector("#preview-content");
@@ -45,7 +46,8 @@ function renderPreviewTitle(buttonText){
     renderPreviewTitle.append(previewTitle);
 }
 
-function renderPreviewContent(buttonText, taskManager) {
+function renderPreviewContent(buttonText) {
+    // Fetch directly from the single source of truth
     const currentTasks = taskManager.getTasks();
     currentTasks.forEach(task => {
         if (buttonText === task.id) {

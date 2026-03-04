@@ -1,9 +1,10 @@
 import * as Icons from './icon.js';
 import { addTaskButton } from "./preview.js";
+import { taskManager } from "./taskManager.js";
 
 export function setupTaskInteractions() {
     const previewContent = document.querySelector("#preview-container");
-    const taskList = [];
+    
     previewContent.addEventListener("click", (event) => {
         const clickedAddTaskBtn = event.target.closest("#add-task-btn");
         if (clickedAddTaskBtn) {
@@ -17,26 +18,30 @@ export function setupTaskInteractions() {
         if (event.target.id === "submit-btn-task") {
             const input = document.querySelector("#task-input");
             if (!input) return;
-            const previewProject = document.querySelector("#preview-title").textContent;
-            console.log(previewProject);
-            const newTask = { name: input.value };
-            newTask["id"]= previewProject;
-            for (const task of taskList) {
-                if (newTask.name === task.name && newTask.id === task.id){
-                    alert("Please enter a different task name!");
-                    return
-                }
+            
+            const taskName = input.value.trim();
+            if (taskName === "") {
+                alert("Please enter a task name!");
+                return;
             }
-            if (input.value.trim() !== "") {
-                taskList.push(newTask);
-                console.log(newTask);
-                console.log(taskList);
+
+            const previewProject = document.querySelector("#preview-title").textContent;
+            const newTask = { name: taskName, id: previewProject };
+
+            // Ask the manager to add the task. It returns true or false.
+            const success = taskManager.addTask(newTask);
+
+            if (success) {
+                // It worked! Render it.
+                console.log("Current List:", taskManager.getTasks());
                 renderInputTask(newTask.name);
                 addTaskButton();
             } else {
-                alert("Please enter a task name!");
-            };
+                // It failed (duplicate found)
+                alert("Please enter a different task name!");
+            }
             return;
+
         }
     });
 
