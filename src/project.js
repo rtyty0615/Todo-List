@@ -39,6 +39,8 @@ export default function setupProjectInteractions() {
             projectManager.deleteProject(projectDeletedTitle);
             projectDeleted.remove();
             console.log(projectManager.getProjects());
+
+            
             return;
         };
     });

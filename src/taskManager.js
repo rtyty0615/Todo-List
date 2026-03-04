@@ -1,6 +1,6 @@
 
 
-const taskList = [];
+let taskList = [];
 
 export const taskManager = {
     getTasks: () => taskList,
@@ -16,5 +16,14 @@ export const taskManager = {
 
         taskList.push(newTask);
         return true;
-    }
+    },
+    deleteTasks: (taskDeletedProjectTitle, taskDeletedTitle) => {
+        taskList = taskList.filter(task =>
+        task.name !== taskDeletedTitle || task.id !== taskDeletedProjectTitle
+    );
+    },
+
+
+    
+
 };

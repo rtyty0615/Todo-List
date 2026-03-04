@@ -40,6 +40,17 @@ export function setupTaskInteractions() {
             return;
 
         }
+
+        const clickedDeleteTaskBtn = event.target.closest(".task-d-btn");
+        if (clickedDeleteTaskBtn) {
+            const taskDeleted = clickedDeleteTaskBtn.closest('.task');
+            const taskDeletedTitle = taskDeleted.querySelector('div').textContent;
+            const taskDeletedProjectTitle = document.querySelector("#preview-title").textContent;
+            taskManager.deleteTasks(taskDeletedProjectTitle, taskDeletedTitle);
+            taskDeleted.remove();
+            console.log(taskManager.getTasks());
+            return;
+        };
     });
 }
 
