@@ -47,7 +47,6 @@ function renderPreviewTitle(buttonText) {
 }
 
 function renderPreviewContent(buttonText) {
-    // Fetch directly from the single source of truth
     const currentTasks = taskManager.getTasks();
     currentTasks.forEach(task => {
         if (buttonText === task.id) {

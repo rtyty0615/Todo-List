@@ -54,13 +54,14 @@ export function setupTaskInteractions() {
 
         const dateBtn = event.target.closest(".task-date-btn");
         if (dateBtn) {
-            renderInputDate();
+            const taskItem = dateBtn.closest(".task");
+            const dateDiv = taskItem.querySelector('.task-date');
+            renderInputDate(dateDiv);
             return;
         };
 
     });
 }
-
 
 function renderTaskForm() {
     const taskAdd = document.querySelector("#preview-add");
@@ -112,13 +113,12 @@ export function renderInputTask(taskName) {
     previewContent.appendChild(taskDiv);
 }
 
-function renderInputDate(){
-    const dateInput = document.querySelector(".task-date");
+function renderInputDate(dateInput){
     dateInput.innerHTML = "";
     const input = document.createElement("input");
     input.type = "date";
     input.classList.add("task-date-input");
     input.name = "task-date";
     dateInput.append(input);
-
+    input.focus();
 }
