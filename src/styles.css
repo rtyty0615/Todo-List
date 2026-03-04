@@ -91,10 +91,14 @@ button svg, div svg {
 }
 
 .project-d-btn, .task-d-btn{
-    margin-left: auto;
+   
     display: flex;
     align-items: center;
+}
 
+
+.task-date{
+    margin-left: auto;
 }
 
 .project-d-icon svg, .task-d-icon svg{
@@ -110,5 +114,5 @@ button svg, div svg {
 .task{
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 10px;
 }

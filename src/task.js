@@ -51,6 +51,13 @@ export function setupTaskInteractions() {
             console.log(taskManager.getTasks());
             return;
         };
+
+        const dateBtn = event.target.closest(".task-date-btn");
+        if (dateBtn) {
+            renderInputDate();
+            return;
+        };
+
     });
 }
 
@@ -94,6 +101,24 @@ export function renderInputTask(taskName) {
     const taskDeleteIcon = Icons.getIconElement(taskDeleteSvg, "task-d-icon");
     taskDeleteBtn.append(taskDeleteIcon);
 
-    taskDiv.append(taskTitle, taskDeleteBtn);
+    const taskDate = document.createElement("div");
+    const taskDateBtn = document.createElement("button");
+    taskDateBtn.classList.add("task-date-btn");
+    taskDate.classList.add("task-date");
+    taskDateBtn.textContent = "No Date";
+    taskDate.append(taskDateBtn);
+
+    taskDiv.append(taskTitle, taskDate, taskDeleteBtn);
     previewContent.appendChild(taskDiv);
+}
+
+function renderInputDate(){
+    const dateInput = document.querySelector(".task-date");
+    dateInput.innerHTML = "";
+    const input = document.createElement("input");
+    input.type = "date";
+    input.classList.add("task-date-input");
+    input.name = "task-date";
+    dateInput.append(input);
+
 }
