@@ -1,6 +1,7 @@
 import { addProjectButton } from "./sidebar.js";
 import * as Icons from './icon.js';
 import { projectManager } from "./projectManager.js";
+import { taskManager } from "./taskManager.js";
 
 export default function setupProjectInteractions() {
     const projectContainer = document.querySelector("#project");
@@ -40,7 +41,8 @@ export default function setupProjectInteractions() {
             projectDeleted.remove();
             console.log(projectManager.getProjects());
 
-            
+            taskManager.deleteTaskByProject(projectDeletedTitle);
+            console.log(taskManager.getTasks());
             return;
         };
     });

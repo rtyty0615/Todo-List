@@ -17,10 +17,15 @@ export const taskManager = {
         taskList.push(newTask);
         return true;
     },
-    deleteTasks: (taskDeletedProjectTitle, taskDeletedTitle) => {
+    deleteTask: (taskDeletedProjectTitle, taskDeletedTitle) => {
         taskList = taskList.filter(task =>
         task.name !== taskDeletedTitle || task.id !== taskDeletedProjectTitle
     );
+    },
+    deleteTaskByProject: (projectDeleted) => {
+        taskList = taskList.filter(task =>
+            task.id !== projectDeleted
+        );
     },
 
 

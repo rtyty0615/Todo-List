@@ -46,7 +46,7 @@ export function setupTaskInteractions() {
             const taskDeleted = clickedDeleteTaskBtn.closest('.task');
             const taskDeletedTitle = taskDeleted.querySelector('div').textContent;
             const taskDeletedProjectTitle = document.querySelector("#preview-title").textContent;
-            taskManager.deleteTasks(taskDeletedProjectTitle, taskDeletedTitle);
+            taskManager.deleteTask(taskDeletedProjectTitle, taskDeletedTitle);
             taskDeleted.remove();
             console.log(taskManager.getTasks());
             return;
