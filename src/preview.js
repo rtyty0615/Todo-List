@@ -50,7 +50,7 @@ function renderPreviewContent(buttonText) {
     const currentTasks = taskManager.getTasks();
     currentTasks.forEach(task => {
         if (buttonText === task.id) {
-            renderInputTask(task.name);
+            renderInputTask(task.name, task.date);
         }
     });
 }

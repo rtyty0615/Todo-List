@@ -26,13 +26,13 @@ export function setupTaskInteractions() {
             }
 
             const previewProject = document.querySelector("#preview-title").textContent;
-            const newTask = { name: taskName, id: previewProject };
+            const newTask = { name: taskName, id: previewProject, date: "No date" };
 
             const success = taskManager.addTask(newTask);
 
             if (success) {
                 console.log("Current List:", taskManager.getTasks());
-                renderInputTask(newTask.name);
+                renderInputTask(newTask.name, newTask.date);
                 addTaskButton();
             } else {
                 alert("Please enter a different task name!");
@@ -108,7 +108,7 @@ function renderTaskForm() {
     taskAdd.append(input, submitBtnDiv);
 }
 
-export function renderInputTask(taskName) {
+export function renderInputTask(taskName, taskDate) {
     const previewContent = document.querySelector("#preview-content");
     const taskDiv = document.createElement("div");
     taskDiv.classList.add("task");
@@ -124,9 +124,13 @@ export function renderInputTask(taskName) {
     const taskDeleteIcon = Icons.getIconElement(taskDeleteSvg, "task-d-icon");
     taskDeleteBtn.append(taskDeleteIcon);
 
-    const taskDate = renderInputDate("No date");
-
-    taskDiv.append(taskTitle, taskDate, taskDeleteBtn);
+    if (taskDate === "No date" ) {
+        const noDate = renderInputDate("No date");
+        taskDiv.append(taskTitle, noDate, taskDeleteBtn);
+    } else {
+        const date = renderInputDate(taskDate);
+        taskDiv.append(taskTitle, date, taskDeleteBtn);
+    }
     previewContent.appendChild(taskDiv);
 }
 
