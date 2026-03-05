@@ -72,6 +72,11 @@ export function setupTaskInteractions() {
             dateDiv.innerHTML = "";
             const taskDate = renderInputDate(selectedDate);
             dateDiv.append(taskDate);
+
+            const taskTitle = taskItem.querySelector('div').textContent;
+            const taskProjectTitle = document.querySelector("#preview-title").textContent;
+            taskManager.addDateToTask(selectedDate, taskProjectTitle, taskTitle);
+
             return;
         };
     });

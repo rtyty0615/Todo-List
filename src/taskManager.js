@@ -27,8 +27,11 @@ export const taskManager = {
             task.id !== projectDeleted
         );
     },
-
-
-    
-
+    addDateToTask: (selectedDate, taskProjectTitle, taskTitle) => {
+        for (const task of taskList) {
+            if (task.name === taskTitle && task.id === taskProjectTitle) {
+                task.date = selectedDate;
+            }
+        }
+    },
 };
