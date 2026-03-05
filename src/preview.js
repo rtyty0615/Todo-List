@@ -43,7 +43,10 @@ export function previewInteraction() {
                 addTaskButton()
             };
 
-
+            if (clickedPreviewBtn.id === "inbox") {
+                renderPreviewInbox();
+                addTaskButton()
+            };
         }
 
     })
@@ -85,7 +88,6 @@ export function addTaskButton() {
 function renderPreviewToday() {
     const taskList = taskManager.getTasks();
     const tasksToday = taskList.filter(task => isToday(parseISO(task.date)));
-    console.log(tasksToday);
     tasksToday.forEach(task => {
             renderInputTask(`${task.name}(${task.id})`, task.date);
     });
@@ -94,8 +96,14 @@ function renderPreviewToday() {
 function renderPreviewWeek() {
     const taskList = taskManager.getTasks();
     const tasksWeek = taskList.filter(task => isThisWeek(parseISO(task.date)));
-    console.log(tasksWeek);
     tasksWeek.forEach(task => {
+        renderInputTask(`${task.name}(${task.id})`, task.date);
+    });
+}
+
+function renderPreviewInbox() {
+    const taskList = taskManager.getTasks();
+    taskList.forEach(task => {
         renderInputTask(`${task.name}(${task.id})`, task.date);
     });
 }
