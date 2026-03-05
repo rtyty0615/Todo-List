@@ -38,6 +38,12 @@ export function previewInteraction() {
                 addTaskButton()
             };
 
+            if (clickedPreviewBtn.id === "week") {
+                renderPreviewWeek();
+                addTaskButton()
+            };
+
+
         }
 
     })
@@ -82,6 +88,15 @@ function renderPreviewToday() {
     console.log(tasksToday);
     tasksToday.forEach(task => {
             renderInputTask(`${task.name}(${task.id})`, task.date);
+    });
+}
+
+function renderPreviewWeek() {
+    const taskList = taskManager.getTasks();
+    const tasksWeek = taskList.filter(task => isThisWeek(parseISO(task.date)));
+    console.log(tasksWeek);
+    tasksWeek.forEach(task => {
+        renderInputTask(`${task.name}(${task.id})`, task.date);
     });
 }
 
