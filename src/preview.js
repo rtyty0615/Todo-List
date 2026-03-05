@@ -2,6 +2,7 @@ import "./styles.css";
 import * as Icons from './icon.js';
 import {renderInputTask, } from "./task.js";
 import { taskManager } from "./taskManager.js";
+import { isToday, isThisWeek, parseISO } from 'date-fns';
 
 export function preview() {
     const main = document.querySelector("main");
@@ -30,7 +31,13 @@ export function previewInteraction() {
             if (clickedPreviewBtn.classList.contains('project-item')){
                 renderPreviewContent(buttonText);
                 addTaskButton()
-            }
+            };
+
+            if (clickedPreviewBtn.id === "today") {
+                renderPreviewToday();
+                addTaskButton()
+            };
+
         }
 
     })
@@ -67,5 +74,14 @@ export function addTaskButton() {
     addText.textContent = "Add Task";
     addBtn.appendChild(addText);
     addTask.appendChild(addBtn);
+}
+
+function renderPreviewToday() {
+    const taskList = taskManager.getTasks();
+    const tasksToday = taskList.filter(task => isToday(parseISO(task.date)));
+    console.log(tasksToday);
+    tasksToday.forEach(task => {
+            renderInputTask(`${task.name}(${task.id})`, task.date);
+    });
 }
 

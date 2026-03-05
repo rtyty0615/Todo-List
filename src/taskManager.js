@@ -1,5 +1,3 @@
-
-
 let taskList = [];
 
 export const taskManager = {
