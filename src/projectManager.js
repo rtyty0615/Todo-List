@@ -1,4 +1,6 @@
-const projectList = [];
+import { storage } from "./storage.js";
+
+const projectList = storage.get("project");
 
 export const projectManager = {
     getProjects: () => projectList,
