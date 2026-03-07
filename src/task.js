@@ -44,8 +44,13 @@ export function setupTaskInteractions() {
         const clickedDeleteTaskBtn = event.target.closest(".task-d-btn");
         if (clickedDeleteTaskBtn) {
             const taskDeleted = clickedDeleteTaskBtn.closest('.task');
-            const taskDeletedTitle = taskDeleted.querySelector('div').textContent;
-            const taskDeletedProjectTitle = document.querySelector("#preview-title").textContent;
+            let taskDeletedTitle = taskDeleted.querySelector('div').textContent;
+            let taskDeletedProjectTitle = document.querySelector("#preview-title").textContent;
+            const btnList = ["Today", "Inbox", "This Week"];
+            
+            if ( btnList.includes(taskDeletedProjectTitle) ) {
+                [taskDeletedTitle, taskDeletedProjectTitle] = taskDeletedTitle.split(/[()]/);
+            } 
             taskManager.deleteTask(taskDeletedProjectTitle, taskDeletedTitle);
             taskDeleted.remove();
             console.log(taskManager.getTasks());

@@ -37,7 +37,7 @@ export function sidebar() {
     const weekIcon = Icons.getIconElement(weekSvg, "week-icon");
     weekBtn.appendChild(weekIcon);
     const weekText = document.createElement("div");
-    weekText.textContent = "This week";
+    weekText.textContent = "This Week";
     weekBtn.appendChild(weekText);
     btnList.appendChild(weekBtn);
     sidebar.appendChild(btnList);
