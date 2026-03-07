@@ -3,7 +3,7 @@ import * as Icons from './icon.js';
 import { projectManager } from "./projectManager.js";
 import { taskManager } from "./taskManager.js";
 
-export default function setupProjectInteractions() {
+export function setupProjectInteractions() {
     const projectContainer = document.querySelector("#project");
     projectContainer.addEventListener("click", (event) => {
         const clickedAddProjectBtn = event.target.closest("#add-project-btn");
@@ -72,7 +72,7 @@ function renderInputForm() {
     projectAdd.append(input, submitBtnDiv);
 }
 
-function renderInputProject(projectName) {
+export function renderInputProject(projectName) {
     const projectContainer = document.querySelector("#project-container");
     const projectDiv = document.createElement("div");
     projectDiv.classList.add("project-div");

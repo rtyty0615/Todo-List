@@ -1,6 +1,7 @@
 import { storage } from "./storage.js";
 
-const projectList = storage.get("project");
+let projectList = storage.get("TodoListProject");
+projectList ??= [];
 
 export const projectManager = {
     getProjects: () => projectList,
@@ -11,6 +12,7 @@ export const projectManager = {
             return false; 
         }
         projectList.push(newProject);
+        storage.save("TodoListProject", projectList);
         return true; 
     },
     deleteProject: (deleteProject) => {
@@ -18,6 +20,7 @@ export const projectManager = {
         if (index > -1) {
             projectList.splice(index, 1);
         }
+        storage.save("TodoListProject", projectList);
     },
 
 };
