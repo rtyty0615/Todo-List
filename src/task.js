@@ -75,8 +75,12 @@ export function setupTaskInteractions() {
             const taskDate = renderInputDate(selectedDate);
             dateDiv.append(taskDate);
 
-            const taskTitle = taskItem.querySelector('div').textContent;
-            const taskProjectTitle = document.querySelector("#preview-title").textContent;
+            let taskTitle = taskItem.querySelector('div').textContent;
+            let taskProjectTitle = document.querySelector("#preview-title").textContent;
+            const btnList = ["Today", "Inbox", "This Week"];
+            if (btnList.includes(taskProjectTitle)) {
+                [taskTitle, taskProjectTitle] = taskTitle.split(/[()]/);
+            } 
             taskManager.addDateToTask(selectedDate, taskProjectTitle, taskTitle);
 
             return;
