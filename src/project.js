@@ -24,7 +24,6 @@ export function setupProjectInteractions() {
             }
             const success = projectManager.addProject(projectName);
             if (success) {
-                    console.log("Current Project:", projectManager.getProjects());
                     renderInputProject(projectName);
                     addProjectButton();
                 } else {
@@ -39,10 +38,8 @@ export function setupProjectInteractions() {
             const projectDeletedTitle = projectDeleted.querySelector('div').textContent;
             projectManager.deleteProject(projectDeletedTitle);
             projectDeleted.remove();
-            console.log(projectManager.getProjects());
 
             taskManager.deleteTaskByProject(projectDeletedTitle);
-            console.log(taskManager.getTasks());
             return;
         };
     });

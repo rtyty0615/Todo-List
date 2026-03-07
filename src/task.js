@@ -31,7 +31,6 @@ export function setupTaskInteractions() {
             const success = taskManager.addTask(newTask);
 
             if (success) {
-                console.log("Current List:", taskManager.getTasks());
                 renderInputTask(newTask.name, newTask.date);
                 addTaskButton();
             } else {
@@ -53,7 +52,6 @@ export function setupTaskInteractions() {
             } 
             taskManager.deleteTask(taskDeletedProjectTitle, taskDeletedTitle);
             taskDeleted.remove();
-            console.log(taskManager.getTasks());
             return;
         };
 
@@ -70,7 +68,6 @@ export function setupTaskInteractions() {
         const clickedDateBtn = event.target.closest(".task-date-input");
         if (clickedDateBtn) {
             const selectedDate = event.target.value;
-            console.log("Date saved automatically:", selectedDate);
 
             const taskItem = clickedDateBtn.closest(".task");
             const dateDiv = taskItem.querySelector('.task-date');
